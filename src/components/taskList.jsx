@@ -6,9 +6,9 @@ const TaskList = () => {
 
     return (
         <>
-            <Box sx={{height:"95%",width: "33%", p: 0, m: 1, border: 1, borderColor: "primary.main" }}>
-                    <Box sx={{ display:"flex",justifyContent:"center",alignItems:"center",height:"10%",width: "100%",  bgcolor: "primary.main" }}>
-                        <Typography variant="h5">LIST</Typography>
+            <Box sx={{height:"95%",width: "33%", p: 0,pb:2, m: 1, border: 1,borderRadius:3, borderColor: "primary.main", overflow:"hidden"}}>
+                    <Box sx={{ display:"flex",justifyContent:"center",alignItems:"center",height:"10%",width: "100%",  bgcolor: "primary.main"}}>
+                        <Typography variant="h5" sx={{fontWeight:"bold"}}>LIST</Typography>
                     </Box>
                     <Box sx={{display:"flex",height:"90%"}}>
                     <List sx={{width:"100%",m:0, overflow:"scroll"}}>

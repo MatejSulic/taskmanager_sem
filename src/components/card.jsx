@@ -1,15 +1,75 @@
-import { Box, Typography} from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 
-const MyCard = ({row}) => {
+const MyCard = ({ row }) => {
+  let cardColor = "background.paper";
+
+  switch (row.priority) {
+    case "Low":
+      cardColor = "green";
+      break;
+    case "Medium":
+      cardColor = "yellow";
+      break;
+    case "High":
+      cardColor = "orange";
+      break;
+    case "Critical":
+      cardColor = "red";
+      break;
+    default:
+      cardColor = "background.paper";
+      break;
+  }
+
   return (
     <>
-    <Box sx={{width:"100%",height:"20vh",border:1,borderColor:"primary.main",p:2}}>
-      <Typography variant="h5" sx={{color:"text.primary"}}>{row.id} {row.name}</Typography>
-      <Typography variant="h7" sx={{color:"text.primary"}}>{row.shortDescription}</Typography>
-      <Typography variant="h5" sx={{color:"text.primary"}}>{row.dueDate}</Typography>
-    </Box>
-    </>
+      <Paper
+        sx={{
+          width: "90%",
+          height: "auto",
+          minHeight: "20vh",
+          bgcolor: "backgroud.paper",
+          borderLeft: 8,
+          borderColor: cardColor,
+          p: 2,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          transition: "opacity 0.5s", 
+          "&:hover": {
+            opacity: 0.7,
+            cursor: "pointer",
+          },
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            color: "text.primary",
+            fontWeight: "bold",
+            width: "100%",
+          }}
+        >
+          {row.name}
+        </Typography>
 
+        <Typography sx={{ color: "text.primary" }}>
+          {row.shortDescription}
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography sx={{ color: "text.primary" }}>
+            {row.assignedTo}
+          </Typography>
+          <Typography sx={{ color: "text.primary" }}>{row.dueDate}</Typography>
+        </Box>
+      </Paper>
+    </>
   );
 };
 
