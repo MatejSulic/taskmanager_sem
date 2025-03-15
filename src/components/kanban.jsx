@@ -8,9 +8,9 @@ const Kanban = () =>{
         <Box sx={{display:"flex",flexDirection:"column",width:"75%",height:"100%",p:2}}>
             <Typography variant="h3" sx={{color:"primary.main", height:"10%"}}>Kanban</Typography>
             <Box sx={{height:"90%",width:'100%',display:"flex",flexDirection:"row"}}>
-                <TaskList/>
-                <TaskList/>
-                <TaskList/>
+                <TaskList listState={"TODO"}/>
+                <TaskList listState={"IN PROGRESS"}/>
+                <TaskList listState={"DONE"}/>
                 
             </Box>
         </Box>

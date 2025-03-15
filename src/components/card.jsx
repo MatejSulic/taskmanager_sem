@@ -1,4 +1,6 @@
 import { Box, Paper, Typography } from "@mui/material";
+import { useData } from "../data/dataContext";
+
 
 const MyCard = ({ row }) => {
   let cardColor = "background.paper";
@@ -21,9 +23,11 @@ const MyCard = ({ row }) => {
       break;
   }
 
+  const {setActiveTask} = useData();
   return (
     <>
       <Paper
+        onClick={() => setActiveTask(row)}
         sx={{
           width: "90%",
           height: "auto",

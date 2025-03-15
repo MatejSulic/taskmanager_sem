@@ -1,18 +1,11 @@
-import { Box, Typography, Paper, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
+import { useData } from "../data/dataContext";
+import TaskViewerButtons from "./taskViewerButtons";
+
 
 const TaskViewer = () => {
-  var row = {
-    id: 2,
-    name: "Fix authentication bug",
-    status: "TODO",
-    shortDescription: "Critical issue in OAuth login flow",
-    longDescription:
-      "Users are unable to log in when using third-party OAuth providers due to a session handling issue. The token validation process fails silently causing users to be redirected to the login screen repeatedly. Need to implement proper error reporting and fix token validation.",
-    dueDate: "2025-03-13",
-    priority: "Critical",
-    assignedTo: "Bob Smith",
-    parentProjectId: 101,
-  };
+  const {activeTask }= useData();
+  
   return (
     <Box
       sx={{
@@ -23,7 +16,8 @@ const TaskViewer = () => {
         p: 2,
         borderLeft: 1,
         borderColor: "primary.main",
-      }}
+        
+      }} 
     >
       <Box
         sx={{
@@ -39,28 +33,37 @@ const TaskViewer = () => {
       </Box>
 
       <Box sx={{ display: "flex", flexDirection: "column",justifyContent:"space-between", height: "90%",bgcolor:"background.paper",borderRadius:3,m:1,p:1}}>
+      {activeTask === null ?(
+        <>
+        <Typography>Select task to view...</Typography>
+        </>
+      ) : (
+        <>
         <Box>
-        <Typography variant="h5" sx={{fontWeight:"bold"}}>{row.name}</Typography>
+        <Typography variant="h5" sx={{fontWeight:"bold"}}>{activeTask.name}</Typography>
         
-        <Typography>{row.longDescription}</Typography>
+        <Typography sx={{opacity:0.8, p:1}}>{activeTask.longDescription}</Typography>
         </Box>
         <Box>
-            <Typography>Assigned to: {row.assignedTo}</Typography>
-            <Typography>Team: {row.parentProjectId}</Typography>
-            <Typography>Completion date: {row.dueDate}</Typography>
-            <Typography>Priority: {row.priority}</Typography>
-            <Button variant="contained" sx={{width:"100%",bgcolor:"background.default"}}>
+            <Typography>Assigned to: {activeTask.assignedTo}</Typography>
+            <Typography>Team: {activeTask.parentProjectId}</Typography>
+            <Typography>Completion date: {activeTask.dueDate}</Typography>
+            <Typography>Priority: {activeTask.priority}</Typography>
+            <Box sx={{width:'100%',display:"flex", flexDirection:"column", alignItems:"center"}}>
+            <Button variant="contained" sx={{width:"80%",m:1,bgcolor:"background.default"}}>
                     <Typography sx={{color:"primary.main"}}>Edit Task</Typography>
             </Button>
-            <Box sx={{display:"flex", flexDirection:"row"}}>
-            </Box>
-            <Box>
-                <Button variant="contained" sx={{width:"100%"}}>Move to </Button>
+            <TaskViewerButtons/>
             </Box>
             
+            
         </Box>
+        </>
+        )}
       </Box>
+
     </Box>
+      
   );
 };
 export default TaskViewer;
