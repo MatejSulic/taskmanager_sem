@@ -3,3 +3,22 @@ body {
   margin: 0;
   padding: 0;
 }
+/* Vlastní scroll pro všechny prohlížeče */
+::-webkit-scrollbar {
+  width: 8px; /* Šířka scrollbaru */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5); /* Barva posuvníku */
+  border-radius: 10px; /* Zaoblení hran */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.0); /* Barva pozadí scrollbaru */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-button {
+  background-color: rgba(0, 0, 0, 0.2); /* Barva tlačítek pro scroll */
+}
+

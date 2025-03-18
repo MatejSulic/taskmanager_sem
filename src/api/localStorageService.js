@@ -30,7 +30,7 @@ const LocalStorageService = {
                 dueDate: "2025-03-15", 
                 priority: "High", 
                 assignedTo: "Alice Johnson", 
-                parentProjectId: 101 
+                parentProjectId: 1 
               },
               { 
                 id: 2, 
@@ -41,7 +41,7 @@ const LocalStorageService = {
                 dueDate: "2025-03-13", 
                 priority: "Critical", 
                 assignedTo: "Bob Smith", 
-                parentProjectId: 101 
+                parentProjectId: 1 
               },
               { 
                 id: 3, 
@@ -52,7 +52,7 @@ const LocalStorageService = {
                 dueDate: "2025-03-18", 
                 priority: "Medium", 
                 assignedTo: "Charlie Zhang", 
-                parentProjectId: 102 
+                parentProjectId: 2 
               },
               { 
                 id: 4, 
@@ -63,7 +63,7 @@ const LocalStorageService = {
                 dueDate: "2025-03-11", 
                 priority: "Low", 
                 assignedTo: "David Müller", 
-                parentProjectId: 103 
+                parentProjectId: 3 
               },
               { 
                 id: 5, 
@@ -74,7 +74,7 @@ const LocalStorageService = {
                 dueDate: "2025-03-21", 
                 priority: "Medium", 
                 assignedTo: "Eve Patel", 
-                parentProjectId: 104 
+                parentProjectId: 4 
               },
               { 
                 id: 6, 
@@ -85,7 +85,7 @@ const LocalStorageService = {
                 dueDate: "2025-03-22", 
                 priority: "High", 
                 assignedTo: "Frank Rodriguez", 
-                parentProjectId: 105 
+                parentProjectId: 5 
               },
               { 
                 id: 7, 
@@ -96,7 +96,7 @@ const LocalStorageService = {
                 dueDate: "2025-03-25", 
                 priority: "Medium", 
                 assignedTo: "Grace Kim", 
-                parentProjectId: 106 
+                parentProjectId: 6 
               },
               { 
                 id: 8, 
@@ -107,7 +107,7 @@ const LocalStorageService = {
                 dueDate: "2025-03-28", 
                 priority: "Medium", 
                 assignedTo: "Helen Novak", 
-                parentProjectId: 102 
+                parentProjectId: 2 
               },
               { 
                 id: 9, 
@@ -118,7 +118,7 @@ const LocalStorageService = {
                 dueDate: "2025-04-02", 
                 priority: "High", 
                 assignedTo: "Ivan Petrov", 
-                parentProjectId: 107 
+                parentProjectId: 7 
               },
               { 
                 id: 10, 
@@ -129,7 +129,7 @@ const LocalStorageService = {
                 dueDate: "2025-03-09", 
                 priority: "Medium", 
                 assignedTo: "Julia Wong", 
-                parentProjectId: 108 
+                parentProjectId: 8 
               },
               { 
                 id: 11, 
@@ -140,7 +140,7 @@ const LocalStorageService = {
                 dueDate: "2025-04-05", 
                 priority: "High", 
                 assignedTo: "Kevin O'Brien", 
-                parentProjectId: 101 
+                parentProjectId: 1 
               },
               { 
                 id: 12, 
@@ -151,14 +151,15 @@ const LocalStorageService = {
                 dueDate: "2025-03-18", 
                 priority: "Medium", 
                 assignedTo: "Lena Schmidt", 
-                parentProjectId: 103 
+                parentProjectId: 3 
               }
         ],
         projects: [
           { id: 1, name: "Task Manager App" }
         ],
         teams: [
-          { id: 1, name: "Frontend Team" }
+          { id: 1, name: "Alpha" }
+          
         ],
         employees: [
           { id: 1, name: "Jan Novák", role: "Developer" }

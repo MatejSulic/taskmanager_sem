@@ -28,14 +28,15 @@ const TaskList = ({ listState }) => {
             height: "10%",
             width: "100%",
             bgcolor: "primary.main",
+            scrollBehavior:"smooth"
           }}
         >
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
             {listState}
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", height: "90%" }}>
-          <List sx={{ width: "100%", m: 0, overflow: "scroll" }}>
+        <Box sx={{ display: "flex", height: "90%"}}>
+          <List sx={{ width: "100%", m: 0, overflow: "scroll", overflowX:"hidden"}}>
             {tasks.map((row, index) => {
               if (row.status !== listState) return null;
               return (

@@ -39,7 +39,9 @@ const TaskViewer = () => {
         </>
       ) : (
         <>
+        <div key={activeTask.id}>
         <Box>
+          
         <Typography variant="h5" sx={{fontWeight:"bold"}}>{activeTask.name}</Typography>
         
         <Typography sx={{opacity:0.8, p:1}}>{activeTask.longDescription}</Typography>
@@ -58,9 +60,11 @@ const TaskViewer = () => {
             
             
         </Box>
+        </div>
         </>
         )}
       </Box>
+
 
     </Box>
       
