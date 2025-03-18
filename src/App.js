@@ -18,6 +18,7 @@ const App = () => {
     <>
     <DataProvider>
     <Router>
+    
     <Navbar/>
       <Box sx={{display:"flex",flexDirection:"row", maxWidth:"100%",height:"90vh"}}>
         <Routes>
