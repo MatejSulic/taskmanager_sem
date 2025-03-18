@@ -5,7 +5,6 @@ import LocalStorageService from "../api/localStorageService";
 
 
 const Kanban = () =>{
-    LocalStorageService.initData();
     return(
         <Box sx={{display:"flex",flexDirection:"column",width:"75%",height:"100%",p:2}}>
             <Typography variant="h3" sx={{color:"primary.main", height:"10%"}}>Kanban</Typography>

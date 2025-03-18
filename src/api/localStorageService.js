@@ -175,17 +175,55 @@ const LocalStorageService = {
         { id: 8, name: "CI/CD Pipeline", tasks_id: [10] },
       ],
       teams: [
-        { id: 1, name: "Alpha", employees_id: [1, 2, 3] },
-        { id: 2, name: "Beta", employees_id: [4, 5, 6] },
+        { id: 1, name: "Alpha", employees_id: [ 2, 3] },
+        { id: 2, name: "Beta", employees_id: [1,4] },
+        { id: 3, name: "Gama", employees_id: [5]}
       ],
       employees: [
-        { id: 1, name: "Helen Novak", team_id: 1, tasks_id: [8, 2] },
-        { id: 2, name: "Bob Smith", team_id: 1, tasks_id: [2] },
-        { id: 3, name: "Alice Johnson", team_id: 1, tasks_id: [1] },
-        { id: 4, name: "David Müller", team_id: 2, tasks_id: [4] },
-        { id: 5, name: "Eve Patel", team_id: 2, tasks_id: [5] },
-        { id: 6, name: "Frank Rodriguez", team_id: 2, tasks_id: [6] },
-      ]};
+        { 
+          id: 1, 
+          name: "Helen Novak", 
+          team_id: 2, 
+          tasks_id: [8, 2], 
+          reportingTo_id: 3 
+        },
+        { 
+          id: 2, 
+          name: "Alice Johnson", 
+          team_id: 1, 
+          tasks_id: [1], 
+          reportingTo_id: 5 
+        },
+        { 
+          id: 3, 
+          name: "Bob Smith", 
+          team_id: 1, 
+          tasks_id: [2], 
+          reportingTo_id: 5 
+        },
+        { 
+          id: 4, 
+          name: "Charlie Zhang", 
+          team_id: 2, 
+          tasks_id: [3], 
+          reportingTo_id: 6 
+        },
+        { 
+          id: 5, 
+          name: "David Müller", 
+          team_id: 3, 
+          tasks_id: [4], 
+          reportingTo_id: 6 
+        },
+        { 
+          id: 6, 
+          name: "Eve Patel", 
+          team_id: 3, 
+          tasks_id: [5], 
+          reportingTo_id: 6 
+        }
+      ]
+    }
   
       Object.keys(defaultData).forEach((key) => {
         if (!localStorage.getItem(key)) {
