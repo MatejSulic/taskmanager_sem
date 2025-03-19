@@ -1,36 +1,40 @@
 import React, { useState } from 'react';
 import { useData } from "../data/dataContext";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Select, MenuItem, FormControl, InputLabel, Box } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Select, MenuItem, FormControl, InputLabel, Box, Paper, TablePagination } from '@mui/material';
 import LocalStorageService from '../api/localStorageService';
+
 const TableView = () => {
-  // Získání dat z dataContextu
   const { employees, teams } = useData();
   const [teamFilter, setTeamFilter] = useState('');
+  const [page, setPage] = useState(0);
+  const rowsPerPage = 6;
 
-  // Filtrace zaměstnanců na základě vybraného týmu
   const filteredEmployees = teamFilter
     ? employees.filter((employee) => employee.team_id === Number(teamFilter))
     : employees;
 
-  // Handler pro změnu filtru
   const handleTeamChange = (event) => {
     setTeamFilter(event.target.value);
+    setPage(0);
   };
 
-  localStorage.clear();
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
   return (
-    <>
-    <Box sx={{p:2,m:2, backgroundColor:"secondary.main", borderRadius:3,minHeight:"80%"}}>
-      <FormControl fullWidth>
-        <InputLabel id="team-select-label">Select Team</InputLabel>
+    <Box sx={{ p: 3, m: 3, backgroundColor: "secondary.light", borderRadius: 2, minHeight: "80%" }}>
+      <FormControl fullWidth sx={{ mb: 3 }}>
         <Select
           labelId="team-select-label"
           value={teamFilter}
-          label="Select Team"
           onChange={handleTeamChange}
+          displayEmpty
+          variant="outlined"
+          sx={{ backgroundColor: "white", borderRadius: 1, color: "primary.main" }}
         >
           <MenuItem value="">
-            <em>All Teams</em>
+            <em style={{ color: "primary.main" }}>All Teams</em>
           </MenuItem>
           {teams.map((team) => (
             <MenuItem key={team.id} value={team.id}>
@@ -40,32 +44,39 @@ const TableView = () => {
         </Select>
       </FormControl>
 
-      <TableContainer>
-        <Table sx={{border:1,borderColor:"primary.main"}}>
-          <TableHead sx={{backgroundColor:"primary.main"}}>
-            <TableRow >
-                <TableCell>ID</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Team</TableCell>
-              <TableCell>Tasks</TableCell>
-              <TableCell>Reporting To</TableCell>
+      <TableContainer component={Paper} sx={{ boxShadow: 3, borderRadius: 2 }}>
+        <Table>
+          <TableHead>
+            <TableRow sx={{ backgroundColor: "primary.main" }}>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>ID</TableCell>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>Name</TableCell>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>Team</TableCell>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>Tasks</TableCell>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>Reporting To</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody >
-            {filteredEmployees.map((employee) => (
-              <TableRow key={employee.id}>
-                <TableCell sx={{color:"primary.main"}}>{employee.id}</TableCell>
-                <TableCell sx={{color:"primary.main"}}>{employee.name}</TableCell>
-                <TableCell sx={{color:"primary.main"}}>{teams.find((team) => team.id === employee.team_id)?.name}</TableCell>
-                <TableCell sx={{color:"primary.main"}}>{employee.tasks_id.join(', ')}</TableCell>
-                <TableCell sx={{color:"primary.main"}}>{employee.reportingTo_id}</TableCell>
+          <TableBody>
+            {filteredEmployees.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((employee) => (
+              <TableRow key={employee.id} sx={{ '&:nth-of-type(odd)': { backgroundColor: "action.hover" } }}>
+                <TableCell>{employee.id}</TableCell>
+                <TableCell>{employee.name}</TableCell>
+                <TableCell>{teams.find((team) => team.id === employee.team_id)?.name}</TableCell>
+                <TableCell>{employee.tasks_id.join(', ')}</TableCell>
+                <TableCell>{employees.find((e) => e.id === employee.reportingTo_id)?.name || "N/A"}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      </Box>
-    </>
+      <TablePagination
+        rowsPerPageOptions={[]}
+        component="div"
+        count={filteredEmployees.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+      />
+    </Box>
   );
 };
 

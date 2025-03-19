@@ -27,23 +27,31 @@ const TeamManagement = () => {
           flexDirection: "column",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "row", width: "15%" }}>
+        <Box sx={{ display: "flex", flexDirection: "row" }}>
           <Button
+            sx={{ m: 1, width: "10%", color: "secondary.main" }}
             variant="contained"
             onClick={() => setActiveView("TableView")}
           >
             Table
           </Button>
-          <Button variant="contained" onClick={() => setActiveView("TreeView")}>
+          <Button
+            sx={{ m: 1, width: "10%", color: "secondary.main" }}
+            variant="contained"
+            onClick={() => setActiveView("TreeView")}
+          >
             Tree
           </Button>
         </Box>
-        {activeView === "TableView" ? (<>
-            <TableView/>
-        
-        </>):(<>
-        <TreeView/>
-        </>)}
+        {activeView === "TableView" ? (
+          <>
+            <TableView />
+          </>
+        ) : (
+          <>
+            <TreeView />
+          </>
+        )}
       </Box>
     </Box>
   );
