@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useData } from "../data/dataContext";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Select, MenuItem, FormControl, InputLabel, Box, Paper, TablePagination } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Select, MenuItem, FormControl, InputLabel, Box, Paper, TablePagination, Button } from '@mui/material';
 import LocalStorageService from '../api/localStorageService';
 
 const TableView = () => {
@@ -8,6 +8,8 @@ const TableView = () => {
   const [teamFilter, setTeamFilter] = useState('');
   const [page, setPage] = useState(0);
   const rowsPerPage = 6;
+  const {setActiveEmp} = useData();
+
 
   const filteredEmployees = teamFilter
     ? employees.filter((employee) => employee.team_id === Number(teamFilter))
@@ -23,7 +25,7 @@ const TableView = () => {
   };
 
   return (
-    <Box sx={{ p: 3, m: 3, backgroundColor: "secondary.light", borderRadius: 2, minHeight: "80%" }}>
+    <Box sx={{ p: 3, backgroundColor: "secondary.light", borderRadius: 2, maxHeight: "80%" }}>
       <FormControl fullWidth sx={{ mb: 3 }}>
         <Select
           labelId="team-select-label"
@@ -44,7 +46,7 @@ const TableView = () => {
         </Select>
       </FormControl>
 
-      <TableContainer component={Paper} sx={{ boxShadow: 3, borderRadius: 2 }}>
+      <TableContainer component={Paper} sx={{ boxShadow: 3, borderRadius: 2, maxHeight:"80%"}}>
         <Table>
           <TableHead>
             <TableRow sx={{ backgroundColor: "primary.main" }}>
@@ -53,6 +55,7 @@ const TableView = () => {
               <TableCell sx={{ color: "white", fontWeight: "bold" }}>Team</TableCell>
               <TableCell sx={{ color: "white", fontWeight: "bold" }}>Tasks</TableCell>
               <TableCell sx={{ color: "white", fontWeight: "bold" }}>Reporting To</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -63,11 +66,11 @@ const TableView = () => {
                 <TableCell>{teams.find((team) => team.id === employee.team_id)?.name}</TableCell>
                 <TableCell>{employee.tasks_id.join(', ')}</TableCell>
                 <TableCell>{employees.find((e) => e.id === employee.reportingTo_id)?.name || "N/A"}</TableCell>
+                <TableCell padding='none'><Button variant='outlined' onClick={() => setActiveEmp(employee)}>Open</Button></TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-      </TableContainer>
       <TablePagination
         rowsPerPageOptions={[]}
         component="div"
@@ -76,6 +79,7 @@ const TableView = () => {
         page={page}
         onPageChange={handleChangePage}
       />
+      </TableContainer>
     </Box>
   );
 };

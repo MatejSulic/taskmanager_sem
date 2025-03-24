@@ -10,6 +10,7 @@ export function DataProvider({ children }) {
   const [teams, setTeams] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [activeTask, setActiveTask] = useState(null);
+  const [activeEmp, setActiveEmp] = useState(null);
 
 
   // nacteni dat z localstorage 
@@ -43,7 +44,7 @@ export function DataProvider({ children }) {
 
 
   return (
-    <DataContext.Provider value={{ toggleTaskState,tasks, setTasks, projects, setProjects, teams, setTeams, employees, setEmployees, activeTask, setActiveTask}}>
+    <DataContext.Provider value={{ toggleTaskState,tasks, setTasks, projects, setProjects, teams, setTeams, employees, setEmployees, activeTask, setActiveTask,activeEmp,setActiveEmp}}>
       {children}
     </DataContext.Provider>
   );

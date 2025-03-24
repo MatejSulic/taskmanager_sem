@@ -5,50 +5,54 @@ const TaskViewerButtons = () => {
   const { activeTask, toggleTaskState } = useData();
 
   return (
-    <Box>
+    <Box sx={{width:"100%", display:"flex", justifyContent:"center"}}>
       {activeTask.status === "TODO" && (
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: "100%", display:"flex", justifyContent:"center"}}>
           <Button
             variant="contained"
-            sx={{ width: '100%' }}
+            sx={{ width: '50%' }}
             onClick={() => toggleTaskState(activeTask.id, "IN PROGRESS")}
           >
-            Move to IN PROGRESS
+            Progress
           </Button>
         </Box>
       )}
       {activeTask.status === "IN PROGRESS" && (
-        <Box>
+        <Box sx={{width:"80%", display:"flex",flexDirection:"row" ,justifyContent:"space-between"}}>
           <Button
+          sx={{ width: '50%', mr:1}}
             variant="contained"
             onClick={() => toggleTaskState(activeTask.id, "TODO")}
           >
-            Move to TODO
+            To Do
           </Button>
           <Button
+          sx={{ width: '50%',ml:1 }}
             variant="contained"
             onClick={() => toggleTaskState(activeTask.id, "DONE")}
           >
-            Move to DONE
+            Done
           </Button>
         </Box>
       )}
       {activeTask.status === "DONE" && (
-        <Box>
+        <Box sx={{ width:"80%", display:"flex",flexDirection:"row" ,justifyContent:"space-between"}}>
           <Button
+          sx={{ width: '50%', mr:1}}
             variant="contained"
             onClick={() => toggleTaskState(activeTask.id, "IN PROGRESS")}
           >
-            Move to IN PROGRESS
+            Progress
           </Button>
           <Button
+          sx={{ width: '50%', ml:1}}
             variant="contained"
             onClick={() => {
               // Remove task using the context function
               toggleTaskState(activeTask.id, "DELETED"); // You might want to handle task deletion
             }}
           >
-            Delete Task
+            Delete
           </Button>
         </Box>
       )}
